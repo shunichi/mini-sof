@@ -31,7 +31,7 @@ feature 'authentication' do
     user = FactoryGirl.create(:user)
 
     visit root_path
-    click_link 'Login'
+    click_link 'Log in'
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button 'Log in'
@@ -45,7 +45,7 @@ feature 'authentication' do
     user.password += 'a'
 
     visit root_path
-    click_link 'Login'
+    click_link 'Log in'
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button 'Log in'
