@@ -37,3 +37,33 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'haml-rails'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-collection_matchers', '~> 1.0.0'
+  gem 'factory_girl_rails', '~> 4.2.1'
+end
+
+# group :test do
+#   gem 'faker', '~> 1.4.3' # , '~> 1.1.2'
+#   gem 'capybara' # , '~> 2.1.0'
+#   gem 'database_cleaner', '~> 1.3.0' # , '~> 1.0.1'
+#   gem 'launchy', '~> 2.4.2'
+#   gem 'selenium-webdriver', '~> 2.42.0' # , '~> 2.39.0'
+# end
+
+group :development do
+  # pry 0.10.0 has compatibility issue with hirb.
+  # https://github.com/cldwalker/hirb/issues/81
+  gem 'pry', '< 0.10.0'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-stack_explorer'
+  gem 'pry-byebug'
+  gem 'hirb'
+  gem 'hirb-unicode'
+
+  gem 'letter_opener'
+end
