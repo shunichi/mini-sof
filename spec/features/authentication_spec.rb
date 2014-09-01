@@ -27,7 +27,7 @@ feature 'authentication' do
     }.to_not change(User, :count)
   end
 
-  scenario 'Sign in' do
+  scenario 'Log in' do
     user = FactoryGirl.create(:user)
 
     visit root_path
@@ -40,7 +40,7 @@ feature 'authentication' do
     expect(page).to have_content('Signed in successfully')
   end
 
-  scenario 'Sign in with invalid password' do
+  scenario 'Log in with invalid password' do
     user = FactoryGirl.create(:user)
     user.password += 'a'
 
