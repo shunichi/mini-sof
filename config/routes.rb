@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :questions
+  resources :questions, except: [:index]
 
   devise_for :users
   get 'static_pages/home'
