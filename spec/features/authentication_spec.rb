@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-feature 'authentication' do
-  scenario 'Sign up' do
+feature '認証' do
+  scenario 'サインアップが成功する' do
     user = FactoryGirl.build(:user)
 
     expect {
@@ -9,7 +9,7 @@ feature 'authentication' do
     }.to change(User, :count).by(1)
   end
 
-  scenario 'Sign up with invalid information' do
+  scenario '不正なパラメータでサインアップが失敗する' do
     user = FactoryGirl.build(:invalid_user)
 
     expect {
@@ -17,7 +17,7 @@ feature 'authentication' do
     }.to_not change(User, :count)
   end
 
-  scenario 'Log in' do
+  scenario 'ログインしてルートにリダイレクトされる' do
     user = FactoryGirl.create(:user)
 
     sign_in user
@@ -26,7 +26,7 @@ feature 'authentication' do
     expect(page).to have_content('Signed in successfully')
   end
 
-  scenario 'Log in with invalid password' do
+  scenario '不正なパスワードでログインしようとするとエラーになってログイン画面に戻る' do
     user = FactoryGirl.create(:user)
     user.password += 'a'
 
@@ -36,7 +36,7 @@ feature 'authentication' do
     expect(page).to have_content('Invalid email or password')
   end
 
-  scenario 'Log out' do
+  scenario 'ログアウトしてルートにリダイレクトされる' do
     user = FactoryGirl.create(:user)
 
     sign_in user
