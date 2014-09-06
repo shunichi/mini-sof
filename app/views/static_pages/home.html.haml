@@ -1,1 +1,9 @@
 %h1 Mini Stackoverflow
+
+#questions
+  - @questions.each do |question|
+    .question-summary
+      %h3= link_to question.title, question
+      .excerpt= truncate(question.body, length: 100)
+      .user-info= question.user.email
+

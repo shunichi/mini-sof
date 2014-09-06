@@ -1,0 +1,17 @@
+%p
+  %b User:
+  = @question.user_id
+%p
+  %b Title:
+  = @question.title
+%p
+  %b Body:
+  = @question.body
+
+- if @question.user == current_user
+  = link_to 'Edit', edit_question_path(@question)
+  \|
+  = link_to 'Delete', @question, method: :delete, data: { confirm: 'Are you sure?' }
+  \|
+= link_to 'Back', root_path
+
