@@ -24,6 +24,7 @@ feature '認証' do
 
     expect(current_path).to eq root_path
     expect(page).to have_content('Signed in successfully')
+    expect(page).to have_link('Log out')
   end
 
   scenario '不正なパスワードでログインしようとするとエラーになってログイン画面に戻る' do
@@ -44,5 +45,6 @@ feature '認証' do
 
     expect(current_path).to eq root_path
     expect(page).to have_content('Signed out successfully')
+    expect(page).to have_link('Log in')
   end
 end
