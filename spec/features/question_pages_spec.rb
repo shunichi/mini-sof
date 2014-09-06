@@ -3,7 +3,6 @@ feature '質問ページ' do
     questions = 10.times.map { FactoryGirl.create(:question) }
 
     visit root_path
-    save_and_open_page
     questions.each do |q|
       expect(page).to have_content( q.title )
     end
