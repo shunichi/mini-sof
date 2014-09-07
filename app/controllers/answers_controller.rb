@@ -10,7 +10,10 @@ class AnswersController < ApplicationController
         format.html { redirect_to @answer.question, notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer.question }
       else
-        format.html { render :new }
+        format.html do
+          @question = @answer.question
+          render template: 'questions/show'
+        end
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
@@ -22,7 +25,7 @@ class AnswersController < ApplicationController
         format.html { redirect_to @answer.question, notice: 'Answer was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer.question }
       else
-        format.html { render :edit }
+        format.html { redirect_to @answer.question }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end

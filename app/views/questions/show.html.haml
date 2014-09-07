@@ -26,7 +26,10 @@
       = link_to 'キャンセル', '#', class: 'answer-edit-cancel-link'
     .answer-links
       = link_to '編集', '#', class: 'answer-edit-link'
-      = link_to '削除', question_answer_path(@question, answer), method: :delete, data: { confirm: '削除してもよろしいですか？' }
+      = link_to '削除', question_answer_path(@question, answer),
+        method: :delete,
+        data: { confirm: '削除してもよろしいですか？' },
+        class: 'answer-delete-link'
   .answer-footer
     回答: #{answer.created_at}
     更新: #{answer.updated_at}
@@ -35,6 +38,12 @@
 - if user_signed_in?
   .new-answer-form
     = form_for(@answer, url: question_answers_path(@question)) do |f|
+      - if @answer.errors.any?
+        #error_explanation
+          %h2= "入力にエラーがあるため回答できませんでした"
+          %ul
+            - @answer.errors.full_messages.each do |msg|
+              %li= msg
       = f.hidden_field :user_id
       = f.hidden_field :question_id
       .field
