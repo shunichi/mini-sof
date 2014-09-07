@@ -2,21 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.question-text {
+	margin-bottom: 10px;
+}
+
+.answers-header {
+	color: #666;
+}
+
 .answer {
-	padding: 8px 0px;
 	border-top: solid #e0e0e0 1px;
+}
+
+.answer-text {
+	margin: 8px 0px;
 }
 
 .answer-edit-form {
 	display: none;
 }
 
+.answer-links, .answer-edit-cancel-link, .answer-footer {
+	font-size: x-small;
+	color: #555;
+}
+
 .new-answer-form {
 	padding: 8px 0px;
 	border-top: solid #e0e0e0 1px;
-}
-
-.answer-edit-links, .answer-footer {
-	font-size: 10px;
-	color: #555;
 }
