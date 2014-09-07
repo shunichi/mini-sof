@@ -68,4 +68,5 @@ group :development do
   gem 'hirb-unicode'
 
   gem 'letter_opener'
+  gem 'quiet_assets'
 end

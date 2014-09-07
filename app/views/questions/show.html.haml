@@ -1,17 +1,44 @@
-%p
-  %b User:
-  = @question.user_id
-%p
-  %b Title:
-  = @question.title
-%p
-  %b Body:
+%h2= @question.title
+.question-text
   = @question.body
 
+.question-footer
 - if @question.user == current_user
   = link_to 'Edit', edit_question_path(@question)
   \|
   = link_to 'Delete', @question, method: :delete, data: { confirm: 'Are you sure?' }
-  \|
-= link_to 'Back', root_path
 
+.answers-header
+  回答数: #{@question.answers.count}
+
+= div_for(@question.answers.select(&:persisted?)) do |answer|
+  .answer-text
+    = answer.body
+  - if answer.user == current_user
+    .answer-edit-form
+      = form_for(answer, url: question_answer_path(@question, answer)) do |f|
+        = f.hidden_field :user_id
+        = f.hidden_field :question_id
+        .field
+          = f.text_area :body
+        .actions
+          = f.submit '保存'
+    .answer-edit-links
+      = link_to '編集', '#'
+      = link_to '削除', question_answer_path(@question, answer), method: :delete, data: { confirm: '削除してもよろしいですか？' }
+  .answer-footer
+    回答: #{answer.created_at}
+    更新: #{answer.updated_at}
+    %br
+    = answer.user.email
+
+.new-answer-form
+  = form_for(@answer, url: question_answers_path(@question)) do |f|
+    = f.hidden_field :user_id
+    = f.hidden_field :question_id
+    .field
+      = f.label 'あなたの回答'
+      %br
+      = f.text_area :body
+    .actions
+      = f.submit '回答する'
