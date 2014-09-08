@@ -20,15 +20,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @answer.update(answer_params)
-        format.html { redirect_to @answer.question, notice: 'Answer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @answer.question }
-      else
-        format.html { redirect_to @answer.question }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
-    end
+    @answer.update!(answer_params)
   end
 
   def destroy

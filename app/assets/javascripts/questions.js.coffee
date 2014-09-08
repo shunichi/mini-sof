@@ -7,9 +7,9 @@ $(document).ready ->
 		e.preventDefault()
 		a = $(e.currentTarget).closest(".answer")
 		a.find('.answer-text, .answer-links').hide()
-		a.find('.answer-edit-form').show()
+		a.find('.answer-edit-form-container').show()
 	$(".answer-edit-cancel-link").click (e) ->
 		e.preventDefault()
 		a = $(e.currentTarget).closest(".answer")
 		a.find('.answer-text, .answer-links').show()
-		a.find('.answer-edit-form').hide()
+		a.find('.answer-edit-form-container').hide()
