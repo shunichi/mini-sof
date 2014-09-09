@@ -63,7 +63,22 @@ feature '回答' do
     }.to change(Answer, :count).by(-1)
   end
 
-  scenario '自分の回答の編集ができる'
+  scenario '自分の回答の編集ができる', js: true do
+    question = FactoryGirl.create(:question)
+    answer = FactoryGirl.create(:answer, question: question)
+    new_answer_text = Faker::Lorem.paragraph
+
+    sign_in answer.user
+
+    visit question_path(question)
+    find("#answer_#{answer.id}").click_link '編集'
+    find("#answer_#{answer.id}").fill_in 'answer_body', with: new_answer_text
+    find("#answer_#{answer.id}").click_button '保存'
+    wait_for_ajax
+
+    answer.reload
+    expect(answer.body).to eq new_answer_text
+  end
 
   scenario '自分の質問に対する回答を承認できる'
 
