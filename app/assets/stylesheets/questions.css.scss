@@ -31,3 +31,28 @@
 	padding: 8px 0px;
 	border-top: solid #e0e0e0 1px;
 }
+
+.votecell {
+	width: 60px;
+}
+
+.accepted {
+	width: 26px;
+	margin: 0px auto;
+}
+
+.accept-link {
+	cursor: pointer;
+}
+
+.accepted-on i {
+	color: #6e6;
+}
+
+.accepted-off i {
+	color: #bbb;
+}
+
+.accepted-none {
+	display: none;
+}

@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_answer, only: [:update, :destroy]
+  before_action :set_current_users_answer, only: [:update, :destroy]
+  before_action :set_answer, only: [:accept, :unaccept]
 
   def create
     @answer = Answer.new(answer_params)
@@ -31,13 +32,32 @@ class AnswersController < ApplicationController
     end
   end
 
+  def accept
+    @question.accepted_answer = @answer
+    @question.save!
+    render json: { answer: { id: @answer.id } }
+  end
+
+  def unaccept
+    if @question.accepted_answer == @answer
+      @question.accepted_answer = nil
+      @question.save!
+      render json: { answer: { id: nil } }
+    else
+      head :bad_request
+    end
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
+    def set_current_users_answer
       @answer = current_user.answers.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_answer
+      @question = current_user.questions.find(params[:question_id])
+      @answer = @question.answers.find(params[:id])
+    end
+
     def answer_params
       params.require(:answer).permit(:user_id, :question_id, :body)
     end

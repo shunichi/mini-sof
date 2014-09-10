@@ -12,24 +12,33 @@
   回答数: #{@question.answers.count}
 
 = div_for(@question.answers.select(&:persisted?)) do |answer|
-  .answer-text
-    = answer.body
-  - if answer.user == current_user
-    .answer-edit-form-container
-      .answer-edit-form
-        = render partial: 'answer_edit_form', locals: { answer: answer }
-      = link_to 'キャンセル', '#', class: 'answer-edit-cancel-link'
-    .answer-links
-      = link_to '編集', '#', class: 'answer-edit-link'
-      = link_to '削除', question_answer_path(@question, answer),
-        method: :delete,
-        data: { confirm: '削除してもよろしいですか？' },
-        class: 'answer-delete-link'
-  .answer-footer
-    回答: #{answer.created_at}
-    更新: #{answer.updated_at}
-    %br
-    = answer.user.email
+  %table
+    %tbody
+      %tr
+        %td.votecell
+          .accepted{class: accepted_answer_class(@question, answer),
+            data: { accept_url: accept_question_answer_path(@question, answer),
+             unaccept_url: unaccept_question_answer_path(@question, answer) }}
+            = icon('check', '', class: 'fa-2x')
+        %td
+          .answer-text
+            = answer.body
+          - if answer.user == current_user
+            .answer-edit-form-container
+              .answer-edit-form
+                = render partial: 'answer_edit_form', locals: { answer: answer }
+              = link_to 'キャンセル', '#', class: 'answer-edit-cancel-link'
+            .answer-links
+              = link_to '編集', '#', class: 'answer-edit-link'
+              = link_to '削除', question_answer_path(@question, answer),
+                method: :delete,
+                data: { confirm: '削除してもよろしいですか？' },
+                class: 'answer-delete-link'
+          .answer-footer
+            回答: #{answer.created_at}
+            更新: #{answer.updated_at}
+            %br
+            = answer.user.email
 - if user_signed_in?
   .new-answer-form
     = form_for(@answer, url: question_answers_path(@question)) do |f|

@@ -24,5 +24,6 @@
       %ul
         - if user_signed_in?
           %li= link_to 'Ask Question', new_question_path
-    = yield
+    #content
+      = yield
 

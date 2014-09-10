@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :questions, except: [:index] do
-    resources :answers, only: [:create, :update, :destroy]
+    resources :answers, only: [:create, :update, :destroy] do
+      member do
+        post 'accept'
+        post 'unaccept'
+      end
+    end
   end
 
   devise_for :users

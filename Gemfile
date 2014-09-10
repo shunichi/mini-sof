@@ -41,6 +41,7 @@ gem 'spring',        group: :development
 gem 'devise'
 
 gem 'haml-rails'
+gem 'font-awesome-sass', '~> 4.2.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.99.0'
