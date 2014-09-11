@@ -20,13 +20,13 @@
             %ul.nav.navbar-nav
               - if user_signed_in?
                 %li= link_to current_user.email, edit_user_registration_path
-                %li= link_to 'Ask Question', new_question_path
+                %li= link_to '質問する', new_question_path
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
-                %li= link_to 'Log out', destroy_user_session_path, method: :delete
+                %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
               - else
-                %li= link_to 'Log in', new_user_session_path
-                %li= link_to 'Sign up', new_user_registration_path
+                %li= link_to 'ログイン', new_user_session_path
+                %li= link_to 'サインアップ', new_user_registration_path
     - unless notice.blank?
       .alert.alert-success{role:'alert'}= notice
     - unless alert.blank?

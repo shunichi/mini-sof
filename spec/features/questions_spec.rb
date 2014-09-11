@@ -21,7 +21,7 @@ feature '質問ページ' do
 
     sign_in user
     expect {
-      click_link 'Ask Question'
+      click_link '質問する'
       fill_in 'question_title', with: attrs[:title]
       fill_in 'question_body', with: attrs[:body]
       click_button '保存'

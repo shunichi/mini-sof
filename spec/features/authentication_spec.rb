@@ -24,7 +24,7 @@ feature '認証' do
 
     expect(current_path).to eq root_path
     expect(page).to have_content('Signed in successfully')
-    expect(page).to have_link('Log out')
+    expect(page).to have_link('ログアウト')
   end
 
   scenario '不正なパスワードでログインしようとするとエラーになってログイン画面に戻る' do
@@ -41,10 +41,10 @@ feature '認証' do
     user = FactoryGirl.create(:user)
 
     sign_in user
-    click_link 'Log out'
+    click_link 'ログアウト'
 
     expect(current_path).to eq root_path
     expect(page).to have_content('Signed out successfully')
-    expect(page).to have_link('Log in')
+    expect(page).to have_link('ログイン')
   end
 end
