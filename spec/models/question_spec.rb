@@ -25,4 +25,20 @@ describe Question do
     question = FactoryGirl.build(:question, title: 'a' * 251)
     expect(question).to have(1).errors_on(:title)
   end
+
+  it "質問を削除すると回答も削除される" do
+    question = FactoryGirl.create(:question)
+    answer_count = 5
+    answers = answer_count.times.map { FactoryGirl.create(:answer, question: question) }
+
+    answers.each do |answer|
+      expect(answer).to be_valid
+    end
+    expect {
+      question.destroy
+    }.to change(Answer, :count).by(-answer_count)
+    answers.each do |answer|
+      expect { Answer.find(answer.id) }.to raise_error ActiveRecord::RecordNotFound
+    end
+  end
 end
