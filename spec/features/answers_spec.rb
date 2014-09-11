@@ -27,6 +27,7 @@ feature '回答' do
   scenario '何も書かずに回答するとエラー' do
     question = FactoryGirl.create(:question)
     user = FactoryGirl.create(:user)
+    FactoryGirl.create(:answer, user: user, question: question)
 
     sign_in user
 
