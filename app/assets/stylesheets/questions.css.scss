@@ -1,3 +1,64 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.question-text {
+	margin-bottom: 10px;
+}
+
+.question-footer {
+	font-size: x-small;
+	color: #555;
+}
+
+.answers-header {
+	color: #666;
+	margin: 8px 0px;
+}
+
+.answer {
+	border-top: solid #e0e0e0 1px;
+}
+
+.answer-text {
+	margin: 8px 0px;
+}
+
+.answer-edit-form-container {
+	display: none;
+}
+
+.answer-links, .answer-edit-cancel-link, .answer-footer {
+	font-size: x-small;
+	color: #555;
+}
+
+.new-answer-form {
+	padding: 8px 0px;
+	border-top: solid #e0e0e0 1px;
+}
+
+.votecell {
+	width: 60px;
+}
+
+.accepted {
+	width: 26px;
+	margin: 0px auto;
+}
+
+.accept-link {
+	cursor: pointer;
+}
+
+.accepted-on i {
+	color: #6e6;
+}
+
+.accepted-off i {
+	color: #bbb;
+}
+
+.accepted-none {
+	display: none;
+}

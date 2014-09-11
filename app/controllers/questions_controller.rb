@@ -2,8 +2,10 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_current_users_question, only: [:edit, :update, :destroy]
   before_action :set_question, only: [:show]
+  before_action :set_answer, only: [:show]
 
   def show
+
   end
 
   def new
@@ -55,6 +57,10 @@ class QuestionsController < ApplicationController
 
     def set_current_users_question
       @question = current_user.questions.find(params[:id])
+    end
+
+    def set_answer
+      @answer = @question.answers.build(user: current_user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

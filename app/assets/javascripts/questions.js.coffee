@@ -1,3 +1,37 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+ready = ->
+	$(".answer-edit-link").click (e) ->
+		e.preventDefault()
+		a = $(e.currentTarget).closest(".answer")
+		a.find('.answer-text, .answer-links').hide()
+		a.find('.answer-edit-form-container').show()
+	$(".answer-edit-cancel-link").click (e) ->
+		e.preventDefault()
+		a = $(e.currentTarget).closest(".answer")
+		a.find('.answer-text, .answer-links').show()
+		a.find('.answer-edit-form-container').hide()
+	update_answer_check = (accepted_answer_id) ->
+		$('.accepted')
+			.removeClass('accepted-on')
+			.addClass('accepted-off')
+		if accepted_answer_id
+			$('#answer_' + accepted_answer_id + ' .accepted')
+				.removeClass('accepted-off')
+				.addClass('accepted-on')
+	$('.accept-link').click (e) ->
+		target = $(e.currentTarget)
+		url = if target.hasClass('accepted-off')
+				target.data('acceptUrl')
+			else
+				target.data('unacceptUrl')
+		$.ajax(
+			type: "POST"
+			url: url
+			success: (data) ->
+				update_answer_check(data.answer.id)
+				return false
+			error: (data) ->
+				alert('エラーが発生しました')
+				return false
+			)
+$(document).ready(ready)
+$(document).on('page:load', ready)
