@@ -7,23 +7,30 @@
     = csrf_meta_tags
   %body
     %header
-      %nav
-        %ul
-          %li= link_to 'Home', root_path
-          - if user_signed_in?
-            %li= link_to current_user.email, edit_user_registration_path
-            %li= link_to 'Log out', destroy_user_session_path, method: :delete
-          - else
-            %li= link_to 'Log in', new_user_session_path
-            %li= link_to 'Sign up', new_user_registration_path
+      %nav.navbar.navbar-default{role:'navigation'}
+        .container-fluid
+          .navbar-header
+            %button.navbar-toggle.collapsed{data: {toggle:'collapse', target:'#nav-menu'}}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            = link_to 'Mini Stackoverflow', root_path, class: 'navbar-brand'
+          .collapse.navbar-collapse#nav-menu
+            %ul.nav.navbar-nav
+              - if user_signed_in?
+                %li= link_to current_user.email, edit_user_registration_path
+                %li= link_to 'Ask Question', new_question_path
+            %ul.nav.navbar-nav.navbar-right
+              - if user_signed_in?
+                %li= link_to 'Log out', destroy_user_session_path, method: :delete
+              - else
+                %li= link_to 'Log in', new_user_session_path
+                %li= link_to 'Sign up', new_user_registration_path
     - unless notice.blank?
-      #notice= notice
+      .alert.alert-success{role:'alert'}= notice
     - unless alert.blank?
-      #alert= alert
-    %nav
-      %ul
-        - if user_signed_in?
-          %li= link_to 'Ask Question', new_question_path
+      .alert.alert-danger{role:'alert'}= alert
     #content
       = yield
 
