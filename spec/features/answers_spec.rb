@@ -80,6 +80,45 @@ feature '回答' do
     expect(answer.body).to eq new_answer_text
   end
 
-  scenario '自分の質問に対する回答を承認できる'
+  scenario '自分の質問に対する回答を承認できる', js: true do
+    question = FactoryGirl.create(:question)
+    answer = FactoryGirl.create(:answer, question: question)
+
+    sign_in question.user
+
+    visit question_path(question)
+    find("#answer_#{answer.id} .accept-link").click
+    wait_for_ajax
+
+    question.reload
+    expect(question.accepted_answer).to eq answer
+  end
+
+  scenario '自分の質問に対する回答の承認を取り消せる', js: true do
+    question = FactoryGirl.create(:question)
+    answer = FactoryGirl.create(:answer, question: question)
+    question.accepted_answer = answer
+    question.save!
+
+    sign_in question.user
+
+    visit question_path(question)
+    find("#answer_#{answer.id} .accept-link").click
+    wait_for_ajax
+
+    question.reload
+    expect(question.accepted_answer).to be_nil
+  end
+
+  scenario '他人の質問に対する回答は承認のリンクはない', js: true do
+    question = FactoryGirl.create(:question)
+    answer = FactoryGirl.create(:answer, question: question)
+    user = FactoryGirl.create(:user)
+
+    sign_in user
+
+    visit question_path(question)
+    expect(page).to_not have_css("#answer_#{answer.id} .accept-link")
+  end
 
 end

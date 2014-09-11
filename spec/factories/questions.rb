@@ -5,5 +5,6 @@ FactoryGirl.define do
     association :user
     title { Faker::Lorem.sentence }
     body { Faker::Lorem.paragraph }
+    accepted_answer nil
   end
 end
