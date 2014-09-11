@@ -3,10 +3,10 @@
   = @question.body
 
 .question-footer
-- if @question.user == current_user
-  = link_to 'Edit', edit_question_path(@question)
-  \|
-  = link_to 'Delete', @question, method: :delete, data: { confirm: 'Are you sure?' }
+  - if @question.user == current_user
+    = link_to '編集', edit_question_path(@question)
+    \|
+    = link_to '削除', @question, method: :delete, data: { confirm: '質問を削除してもよろしいですか？' }
 
 .answers-header
   回答数: #{@question.answers.count}

@@ -24,7 +24,7 @@ feature '質問ページ' do
       click_link 'Ask Question'
       fill_in 'question_title', with: attrs[:title]
       fill_in 'question_body', with: attrs[:body]
-      click_button 'Save'
+      click_button '保存'
     }.to change(Question, :count).by(1)
 
     expect(page).to have_content( attrs[:title] )
@@ -37,10 +37,10 @@ feature '質問ページ' do
 
     sign_in question.user
     visit question_path(question)
-    click_link 'Edit'
+    click_link '編集'
     fill_in 'question_title', with: new_attrs[:title]
     fill_in 'question_body', with: new_attrs[:body]
-    click_button 'Save'
+    click_button '保存'
 
     question.reload
     expect(question.title).to eq new_attrs[:title]
@@ -56,7 +56,7 @@ feature '質問ページ' do
     sign_in question.user
     expect {
       visit question_path(question)
-      click_link 'Delete'
+      click_link '削除'
     }.to change(Question, :count).by(-1)
   end
 
@@ -66,7 +66,7 @@ feature '質問ページ' do
 
     sign_in user
     visit question_path(question)
-    expect(page).to_not have_link('Edit')
+    expect(page).to_not have_link('編集')
   end
 
   scenario '他のユーザーの質問には削除リンクがない' do
@@ -75,7 +75,7 @@ feature '質問ページ' do
 
     sign_in user
     visit question_path(question)
-    expect(page).to_not have_link('Delete')
+    expect(page).to_not have_link('削除')
   end
 
 end
