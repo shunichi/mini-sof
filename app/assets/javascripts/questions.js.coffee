@@ -33,5 +33,17 @@ ready = ->
 				alert('エラーが発生しました')
 				return false
 			)
+	$('.question-upvote, .question-downvote').click (e) ->
+		target = $(e.currentTarget)
+		$.ajax(
+			type: "POST"
+			url: target.data('url')
+			success: (data) ->
+				$('.question-vote-sum').text( data.vote_sum )
+				return false
+			error: (data) ->
+				alert('エラーが発生しました')
+				return false
+			)
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -1,12 +1,20 @@
 %h2= @question.title
-.question-text
-  = @question.body
+%table
+  %tbody
+    %tr
+      %td.votecell
+        .question-upvote{data: {url: upvote_question_path(@question)}}= icon('caret-up', '', class: 'fa-3x')
+        .question-vote-sum= @question.vote_sum
+        .question-downvote{data: {url: downvote_question_path(@question)}}= icon('caret-down', '', class: 'fa-3x')
+      %td
+        .question-text
+          = @question.body
 
-.question-footer
-  - if @question.user == current_user
-    = link_to '編集', edit_question_path(@question)
-    \|
-    = link_to '削除', @question, method: :delete, data: { confirm: '質問を削除してもよろしいですか？' }
+        .question-footer
+          - if @question.user == current_user
+            = link_to '編集', edit_question_path(@question)
+            \|
+            = link_to '削除', @question, method: :delete, data: { confirm: '質問を削除してもよろしいですか？' }
 
 .answers-header
   回答数: #{@question.answers.count}

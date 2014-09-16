@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :questions, except: [:index] do
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
     resources :answers, only: [:create, :update, :destroy] do
       member do
         post 'accept'

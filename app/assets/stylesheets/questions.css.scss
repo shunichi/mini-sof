@@ -62,3 +62,19 @@
 .accepted-none {
 	display: none;
 }
+
+.question-upvote, .question-downvote, .question-vote-sum {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.question-vote-sum {
+	font-size: x-large;
+	font-weight: normal;
+	color: #555;
+}
+
+.question-upvote, .question-downvote {
+	cursor: pointer;
+	color: #777;
+}

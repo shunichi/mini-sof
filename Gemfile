@@ -39,6 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+gem 'acts_as_votable', '~> 0.10.0'
 
 gem 'haml-rails'
 gem 'font-awesome-sass', '~> 4.2.0'
