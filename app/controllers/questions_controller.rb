@@ -51,12 +51,12 @@ class QuestionsController < ApplicationController
 
   def upvote
     @question.toggle_vote_up current_user
-    render json: { vote_sum: @question.vote_sum }
+    render json: { vote_sum: @question.vote_sum, vote_value: @question.vote_value_by(current_user) }
   end
 
   def downvote
     @question.toggle_vote_down current_user
-    render json: { vote_sum: @question.vote_sum }
+    render json: { vote_sum: @question.vote_sum, vote_value: @question.vote_value_by(current_user) }
   end
 
   private

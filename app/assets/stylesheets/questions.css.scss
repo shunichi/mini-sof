@@ -63,18 +63,31 @@
 	display: none;
 }
 
-.question-upvote, .question-downvote, .question-vote-sum {
-	text-align: center;
-	margin: 0 auto;
-}
-
 .question-vote-sum {
 	font-size: x-large;
 	font-weight: normal;
 	color: #555;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.question-vote-disabled {
+	color: #777;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .question-upvote, .question-downvote {
 	cursor: pointer;
 	color: #777;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.question-voted {
+	color: #e63;
+}
+
+.question-upvote:active, .question-downvote:active {
+	color: #fa3;
 }

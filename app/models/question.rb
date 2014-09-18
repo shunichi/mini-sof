@@ -12,6 +12,15 @@ class Question < ActiveRecord::Base
     votes_for.where(voter: user)
   end
 
+  def vote_value_by(user)
+    votes = votes_by(user)
+    if votes.size == 0
+      0
+    else
+      votes.first.vote_flag ? 1 : -1
+    end
+  end
+
   def toggle_vote_up(user)
     if votes_by(user).up.any?
       unvote_by user
