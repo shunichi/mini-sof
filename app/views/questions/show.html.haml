@@ -4,7 +4,7 @@
     %tr
       %td.votecell
         %div{data: {url: upvote_question_path(@question)}, class: vote_arrow_class(@question, 1)}= icon('caret-up', '', class: 'fa-3x')
-        .question-vote-sum= @question.vote_sum
+        .vote-sum= @question.vote_sum
         %div{data: {url: downvote_question_path(@question)}, class: vote_arrow_class(@question, -1)}= icon('caret-down', '', class: 'fa-3x')
       %td
         .question-text

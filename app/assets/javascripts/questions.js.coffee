@@ -34,18 +34,18 @@ ready = ->
 				return false
 			)
 	hilightVoteArrow = (value) ->
-		$('.question-upvote, .question-downvote').removeClass('question-voted')
+		$('.vote-arrow.upvote, .vote-arrow.downvote').removeClass('voted')
 		if value > 0
-			$('.question-upvote').addClass('question-voted')
+			$('.vote-arrow.upvote').addClass('voted')
 		else if value < 0
-			$('.question-downvote').addClass('question-voted')
-	$('.question-upvote, .question-downvote').click (e) ->
+			$('.vote-arrow.downvote').addClass('voted')
+	$('.vote-arrow.upvote, .vote-arrow.downvote').click (e) ->
 		target = $(e.currentTarget)
 		$.ajax(
 			type: "POST"
 			url: target.data('url')
 			success: (data) ->
-				$('.question-vote-sum').text( data.vote_sum )
+				$('.vote-sum').text( data.vote_sum )
 				hilightVoteArrow(data.vote_value)
 				return false
 			error: (data) ->

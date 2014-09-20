@@ -4,14 +4,15 @@ module QuestionsHelper
   end
 
   def vote_arrow_class(question, value)
+    classes = ['vote-arrow']
     if user_signed_in?
-      vote_arrow_link_class(value) +
-        (question.vote_value_by(current_user) == value ? ' question-voted' : '')
+      classes.push(value == 1 ? 'upvote' : 'downvote')
+      classes.push('voted') if question.vote_value_by(current_user) == value
     else
-      'question-vote-disabled'
+      classes.push('disabled')
     end
+    classes.join(' ')
   end
-
 
   private
     def link_class(question)
@@ -26,9 +27,5 @@ module QuestionsHelper
       else
         'accepted-none'
       end
-    end
-
-    def vote_arrow_link_class(value)
-      value == 1 ? 'question-upvote' : 'question-downvote'
     end
 end
