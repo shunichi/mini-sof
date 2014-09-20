@@ -24,6 +24,18 @@ feature '投票' do
       }.to change { question.vote_sum }.by(-1)
     end
 
+    scenario 'vote を逆に変更できる', js: true do
+        find('.vote-arrow.upvote').click
+        wait_for_ajax
+        expect(question.vote_sum).to eq 1
+        find('.vote-arrow.downvote').click
+        wait_for_ajax
+        expect(question.vote_sum).to eq -1
+        find('.vote-arrow.upvote').click
+        wait_for_ajax
+        expect(question.vote_sum).to eq 1
+    end
+
     scenario 'vote の取り消しができる', js: true do
         find('.vote-arrow.upvote').click
         wait_for_ajax
@@ -42,11 +54,18 @@ feature '投票' do
   end
 
   feature 'ログインしていない場合' do
-    scenario 'vote できない' do
+    scenario 'vote できない', js: true do
       visit question_path(question)
       expect(page).to_not have_css('.vote-arrow.upvote')
       expect(page).to_not have_css('.vote-arrow.downvote')
       expect(page).to have_css('.vote-arrow.disabled')
+      arrows = all('.vote-arrow')
+      expect(arrows.size).to eq 2
+      arrows.each do |element|
+        element.click
+        wait_for_ajax
+        expect(question.vote_sum).to eq 0
+      end
     end
   end
 end
