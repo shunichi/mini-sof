@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :upvote, :downvote]
   before_action :set_current_users_question, only: [:edit, :update, :destroy]
-  before_action :set_question, only: [:show]
+  before_action :set_question, only: [:show, :upvote, :downvote]
   before_action :set_answer, only: [:show]
 
   def show
@@ -47,6 +47,16 @@ class QuestionsController < ApplicationController
       format.html { redirect_to root_url, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @question.toggle_vote_up current_user
+    render json: { vote_sum: @question.vote_sum, vote_value: @question.vote_value_by(current_user) }
+  end
+
+  def downvote
+    @question.toggle_vote_down current_user
+    render json: { vote_sum: @question.vote_sum, vote_value: @question.vote_value_by(current_user) }
   end
 
   private

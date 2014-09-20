@@ -62,3 +62,32 @@
 .accepted-none {
 	display: none;
 }
+
+.vote-sum {
+	font-size: x-large;
+	font-weight: normal;
+	color: #555;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.vote-arrow {
+	margin: 0 auto;
+	text-align: center;
+	color: #777;
+
+	&.upvote, &.downvote {
+		cursor: pointer;
+	}
+
+	&.disabled {
+	}
+
+	&.voted {
+		color: #e63;
+	}
+
+	&.upvote:active, &.downvote:active {
+		color: #fa3;
+	}
+}

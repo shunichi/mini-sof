@@ -33,5 +33,24 @@ ready = ->
 				alert('エラーが発生しました')
 				return false
 			)
+	hilightVoteArrow = (value) ->
+		$('.vote-arrow.upvote, .vote-arrow.downvote').removeClass('voted')
+		if value > 0
+			$('.vote-arrow.upvote').addClass('voted')
+		else if value < 0
+			$('.vote-arrow.downvote').addClass('voted')
+	$('.vote-arrow.upvote, .vote-arrow.downvote').click (e) ->
+		target = $(e.currentTarget)
+		$.ajax(
+			type: "POST"
+			url: target.data('url')
+			success: (data) ->
+				$('.vote-sum').text( data.vote_sum )
+				hilightVoteArrow(data.vote_value)
+				return false
+			error: (data) ->
+				alert('エラーが発生しました')
+				return false
+			)
 $(document).ready(ready)
 $(document).on('page:load', ready)
