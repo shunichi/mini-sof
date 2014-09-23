@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_users_answer, only: [:update, :destroy]
-  before_action :set_answer, only: [:accept, :unaccept]
+  before_action :set_answer_for_current_users_question, only: [:accept, :unaccept]
   before_action :set_any_answer, only: [:upvote, :downvote]
 
   def create
@@ -64,7 +64,7 @@ class AnswersController < ApplicationController
       @answer = current_user.answers.find(params[:id])
     end
 
-    def set_answer
+    def set_answer_for_current_users_question
       @question = current_user.questions.find(params[:question_id])
       @answer = @question.answers.find(params[:id])
     end
