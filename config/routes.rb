@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       member do
         post 'accept'
         post 'unaccept'
+        post 'upvote'
+        post 'downvote'
       end
     end
   end
