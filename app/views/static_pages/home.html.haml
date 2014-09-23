@@ -1,12 +1,16 @@
 %h1 Mini Stackoverflow
 
+%ul.nav.nav-tabs{role:'tablist'}
+  %li{class: tab_class('newest', @sort_type)}= link_to '新着', root_path(sort: :newest)
+  %li{class: tab_class('active', @sort_type)}= link_to '最近の更新', root_path(sort: :active)
+  %li{class: tab_class('votes', @sort_type)}= link_to '得票順', root_path(sort: :votes)
 #questions
   - @questions.each do |question|
     .question-summary
       .stats-container
         .stats
           .vote-stats
-            %span.vote-count>= question.vote_sum
+            %span.vote-count>= question.cached_votes_score
             %span.vote-unit 票
           .answer-stats{class: answer_stats_class(question) }
             %span.answer-count>= question.answers.size

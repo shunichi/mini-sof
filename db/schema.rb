@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916004704) do
+ActiveRecord::Schema.define(version: 20140923143327) do
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -28,7 +28,10 @@ ActiveRecord::Schema.define(version: 20140916004704) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "answer_id"
+    t.integer  "cached_votes_score", default: 0
   end
+
+  add_index "questions", ["cached_votes_score"], name: "index_questions_on_cached_votes_score", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
