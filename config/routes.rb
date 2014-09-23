@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       post 'upvote'
       post 'downvote'
     end
+    collection do
+      get 'page/:page', action: :index
+    end
     resources :answers, only: [:create, :update, :destroy] do
       member do
         post 'accept'
