@@ -1,4 +1,22 @@
 module QuestionsHelper
+  def tab_class(sort_type, current_sort_type)
+    if sort_type == current_sort_type
+      'active'
+    else
+      ''
+    end
+  end
+
+  def answer_stats_class(question)
+    if question.answers.size == 0
+      "unanswerd"
+    elsif !question.accepted_answer.nil?
+      "answer-accepted"
+    else
+      "answered"
+    end
+  end
+
   def accepted_answer_class(question, answer)
     link_class(question) + check_mark_class(question, answer)
   end

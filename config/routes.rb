@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :questions, except: [:index] do
+  resources :questions do
     member do
       post 'upvote'
       post 'downvote'
@@ -15,6 +15,5 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  get 'static_pages/home'
-  root 'static_pages#home'
+  root 'questions#index'
 end
