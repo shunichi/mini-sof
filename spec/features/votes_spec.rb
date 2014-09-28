@@ -10,42 +10,42 @@ feature '投票' do
       expect {
         find(container).find('.vote-arrow.upvote').click
         wait_for_ajax
-      }.to change { votable.vote_sum }.by(1)
+      }.to change { votable.votes_score }.by(1)
     end
 
     scenario 'downvote すると票数が減る', js: true do
       expect {
         find(container).find('.vote-arrow.downvote').click
         wait_for_ajax
-      }.to change { votable.vote_sum }.by(-1)
+      }.to change { votable.votes_score }.by(-1)
     end
 
     scenario 'vote を逆に変更できる', js: true do
         find(container).find('.vote-arrow.upvote').click
         wait_for_ajax
-        expect(votable.vote_sum).to eq 1
+        expect(votable.votes_score).to eq 1
         find(container).find('.vote-arrow.downvote').click
         wait_for_ajax
-        expect(votable.vote_sum).to eq -1
+        expect(votable.votes_score).to eq -1
         find(container).find('.vote-arrow.upvote').click
         wait_for_ajax
-        expect(votable.vote_sum).to eq 1
+        expect(votable.votes_score).to eq 1
     end
 
     scenario 'vote の取り消しができる', js: true do
         find(container).find('.vote-arrow.upvote').click
         wait_for_ajax
-        expect(votable.vote_sum).to eq 1
+        expect(votable.votes_score).to eq 1
         find(container).find('.vote-arrow.upvote').click
         wait_for_ajax
-        expect(votable.vote_sum).to eq 0
+        expect(votable.votes_score).to eq 0
 
         find(container).find('.vote-arrow.downvote').click
         wait_for_ajax
-        expect(votable.vote_sum).to eq -1
+        expect(votable.votes_score).to eq -1
         find(container).find('.vote-arrow.downvote').click
         wait_for_ajax
-        expect(votable.vote_sum).to eq 0
+        expect(votable.votes_score).to eq 0
     end
   end
 
@@ -83,7 +83,7 @@ feature '投票' do
       arrows.each do |element|
         element.click
         wait_for_ajax
-        expect(votable.vote_sum).to eq 0
+        expect(votable.votes_score).to eq 0
       end
     end
   end

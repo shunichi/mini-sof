@@ -46,7 +46,7 @@ ready = ->
 			type: "POST"
 			url: target.data('url')
 			success: (data) ->
-				parent.find('.vote-sum').text( data.vote_sum )
+				parent.find('.votes-score').text( data.votes_score )
 				hilightVoteArrow(parent, data.vote_value)
 				return false
 			error: (data) ->

@@ -5,7 +5,7 @@
       %tr
         %td.votecell
           %div{data: {url: upvote_question_path(@question)}, class: vote_arrow_class(@question, 1)}= icon('caret-up', '', class: 'fa-3x')
-          .vote-sum= @question.vote_sum
+          .votes-score= @question.votes_score
           %div{data: {url: downvote_question_path(@question)}, class: vote_arrow_class(@question, -1)}= icon('caret-down', '', class: 'fa-3x')
         %td
           .question-text
@@ -25,7 +25,7 @@
       %tr
         %td.votecell
           %div{data: {url: upvote_question_answer_path(@question, answer)}, class: vote_arrow_class(answer, 1)}= icon('caret-up', '', class: 'fa-3x')
-          .vote-sum= answer.vote_sum
+          .votes-score= answer.votes_score
           %div{data: {url: downvote_question_answer_path(@question, answer)}, class: vote_arrow_class(answer, -1)}= icon('caret-down', '', class: 'fa-3x')
           .accepted{class: accepted_answer_class(@question, answer),
             data: { accept_url: accept_question_answer_path(@question, answer),

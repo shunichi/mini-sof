@@ -31,7 +31,7 @@ module VotableMethods
       end
     end
 
-    def vote_sum
+    def votes_score
       get_upvotes.size - get_downvotes.size
     end
   end
