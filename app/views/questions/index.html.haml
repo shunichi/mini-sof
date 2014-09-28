@@ -1,23 +1,26 @@
-%h1 Listing questions
+%h1 Mini Stackoverflow
 
-%table
-  %tr
-    %th User
-    %th Title
-    %th Body
-    %th
-    %th
-    %th
-
+%ul.nav.nav-tabs{role:'tablist'}
+  %li{class: tab_class('newest', @sort_type)}= link_to '新着', root_path(sort: :newest)
+  %li{class: tab_class('active', @sort_type)}= link_to '最近の更新', root_path(sort: :active)
+  %li{class: tab_class('votes', @sort_type)}= link_to '得票順', root_path(sort: :votes)
+#questions
   - @questions.each do |question|
-    %tr
-      %td= question.user.email
-      %td= question.title
-      %td= question.body
-      %td= link_to 'Show', question
-      %td= link_to 'Edit', edit_question_path(question)
-      %td= link_to 'Destroy', question, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .question-summary
+      .stats-container
+        .stats
+          .vote-stats
+            %span.vote-count>= question.cached_votes_score
+            %span.vote-unit 票
+          .answer-stats{class: answer_stats_class(question) }
+            %span.answer-count>= question.answers.size
+            %span.answer-unit 答
+      .summary
+        %h3= link_to question.title, question
+        .excerpt= truncate(question.body, length: 100)
+        .user-info= question.user.email
+        .footer
+          回答: #{question.created_at}
+          更新: #{question.updated_at}
 
-%br
-
-= link_to 'New Question', new_question_path
+= paginate @questions

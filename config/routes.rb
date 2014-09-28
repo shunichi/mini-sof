@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :questions, except: [:index] do
+  resources :questions do
     member do
       post 'upvote'
       post 'downvote'
+    end
+    collection do
+      get 'page/:page', action: :index, as: 'paged'
     end
     resources :answers, only: [:create, :update, :destroy] do
       member do
@@ -15,6 +18,5 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  get 'static_pages/home'
-  root 'static_pages#home'
+  root 'questions#index'
 end

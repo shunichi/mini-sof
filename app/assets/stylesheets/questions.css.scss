@@ -2,6 +2,91 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// questions#index
+
+.question-summary {
+	margin: 10px 0px;
+	border-bottom: solid #e0e0e0 1px;
+	overflow: auto;
+}
+
+.stats-container {
+	float: left;
+	padding: 4px;
+	width: 60px;
+}
+.stats {
+	background-color: #eee;
+	margin: 0 auto;
+	padding-bottom: 4px;
+}
+
+.vote-stats {
+	text-align: center;
+	font-size: x-large;
+	width: 40px;
+	margin: 0 auto;
+	color: #808185;
+}
+
+.vote-count {
+}
+.vote-unit {
+	margin-left: 2px;
+	font-size: x-small;
+}
+.answer-count {
+}
+.answer-unit {
+	margin-left: 2px;
+	font-size: x-small;
+}
+
+.answer-stats {
+	text-align: center;
+	font-size: large;
+	width: 30px;
+	margin: 0 auto;
+}
+
+.unanswerd {
+	color: #9a4444;
+	background-color: transparent;
+}
+
+.answered {
+	color: #fff;
+	background-color: #75845c;
+}
+
+.answer-accepted {
+	color: #e1e818;
+	background-color: #75845c;
+}
+
+.summary {
+	float: left;
+	width: 920px;
+	padding: 4px;
+
+	h3 {
+		margin: 4px 0px 4px 0px;
+	}
+
+	.excerpt {
+		margin-bottom: 3px;
+	}
+	.footer {
+		font-size: x-small;
+		color: #555;
+	}
+	.user-info {
+	}
+}
+
+
+// questions#show
+
 .question-text {
 	margin-bottom: 10px;
 }
