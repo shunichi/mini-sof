@@ -68,11 +68,22 @@
 	float: left;
 	width: 920px;
 	padding: 4px;
+
+	h3 {
+		margin: 4px 0px 4px 0px;
+	}
+
+	.excerpt {
+		margin-bottom: 3px;
+	}
+	.footer {
+		font-size: x-small;
+		color: #555;
+	}
+	.user-info {
+	}
 }
 
-.summary h3 {
-	margin: 4px 0px 4px 0px;
-}
 
 // questions#show
 

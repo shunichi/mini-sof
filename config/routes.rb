@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       post 'downvote'
     end
     collection do
-      get 'page/:page', action: :index
+      get 'page/:page', action: :index, as: 'paged'
     end
     resources :answers, only: [:create, :update, :destroy] do
       member do

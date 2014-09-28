@@ -1,10 +1,66 @@
-feature '質問ページ' do
-  scenario '質問の一覧が見られる' do
-    questions = 10.times.map { FactoryGirl.create(:question) }
+require 'spec_helper'
 
-    visit root_path
-    questions.each do |q|
-      expect(page).to have_content( q.title )
+feature '質問ページ' do
+
+  feature '一覧ページ' do
+    scenario '１ページに収まる場合、全ての質問が表示されている' do
+      question_count = Kaminari.config.default_per_page
+      questions = question_count.times.map { FactoryGirl.create(:question) }
+
+      visit root_path
+      questions.each do |q|
+        expect(page).to have_content( q.title )
+      end
+    end
+
+    scenario '正しくページ分割されている' do
+      page_count = 3
+      question_count = Kaminari.config.default_per_page * page_count
+      question_count.times.map { FactoryGirl.create(:question) }
+
+      page_count.times.each do |p0|
+        displayed_page_no = p0 + 1
+
+        visit paged_questions_path(page: displayed_page_no)
+
+        page_count.times.each do |p1|
+          page_no = p1 + 1
+
+          questions = Question.order(updated_at: :desc).page(page_no)
+          questions.each do |q|
+            if displayed_page_no == page_no
+              expect(page).to have_selector( 'h3', text: q.title )
+            else
+              expect(page).to_not have_selector( 'h3', text: q.title )
+            end
+          end
+        end
+      end
+    end
+
+    shared_examples 'ソート' do |order_type, order_key|
+      scenario 'ソートされている' do
+        question_count = Kaminari.config.default_per_page
+        question_count.times.map { FactoryGirl.create(:question) }
+
+        visit root_path(sort: order_type)
+
+        questions = Question.order(order_key => :desc).page(1)
+
+        expect(page.all('.question-summary h3').map(&:text)).to eq(questions.map(&:title))
+      end
+    end
+
+    feature '更新時間ソート' do
+      it_behaves_like 'ソート', 'active', :updated_at
+    end
+
+    feature '新着順ソート' do
+      it_behaves_like 'ソート', 'newest', :created_at
+    end
+
+    feature '得票順ソート' do
+      it_behaves_like 'ソート', 'votes', :cached_votes_score
     end
   end
 

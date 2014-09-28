@@ -19,5 +19,8 @@
         %h3= link_to question.title, question
         .excerpt= truncate(question.body, length: 100)
         .user-info= question.user.email
+        .footer
+          回答: #{question.created_at}
+          更新: #{question.updated_at}
 
 = paginate @questions
