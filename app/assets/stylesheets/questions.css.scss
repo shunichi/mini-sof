@@ -84,8 +84,33 @@
 	}
 }
 
+// question edit form
+
+.edit-container {
+	overflow: auto;
+}
+.preview {
+	float: right;
+	width: 50%;
+	padding: 0px 0px 0px 16px;
+}
+.preview-text {
+}
+.edit {
+	overflow: hidden;
+}
+.edit textarea {
+	width: 100%;
+	max-width: 100%;
+	min-height: 200px;
+	height: 100%;
+}
 
 // questions#show
+
+.md-plain {
+	display: none;
+}
 
 .question-text {
 	margin-bottom: 10px;

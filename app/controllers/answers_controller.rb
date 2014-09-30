@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
 
   def update
     @answer.update!(answer_params)
+    render json: { answer: { id: @answer.id, body: @answer.body } }
   end
 
   def destroy

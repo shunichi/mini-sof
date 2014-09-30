@@ -7,9 +7,9 @@
           %div{data: {url: upvote_question_path(@question)}, class: vote_arrow_class(@question, 1)}= icon('caret-up', '', class: 'fa-3x')
           .votes-score= @question.votes_score
           %div{data: {url: downvote_question_path(@question)}, class: vote_arrow_class(@question, -1)}= icon('caret-down', '', class: 'fa-3x')
-        %td
-          .question-text
-            = @question.body
+        %td.md-container
+          .md-plain>= preserve(html_escape(@question.body))
+          .question-text.md-formatted
           .question-footer
             - if @question.user == current_user
               = link_to '編集', edit_question_path(@question)
@@ -31,9 +31,9 @@
             data: { accept_url: accept_question_answer_path(@question, answer),
              unaccept_url: unaccept_question_answer_path(@question, answer) }}
             = icon('check', '', class: 'fa-2x')
-        %td
-          .answer-text
-            = answer.body
+        %td.md-container
+          .md-plain>= preserve(html_escape(answer.body))
+          .answer-text.md-formatted
           - if answer.user == current_user
             .answer-edit-form-container
               .answer-edit-form
