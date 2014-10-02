@@ -4,6 +4,7 @@ ready = ->
 		a.find('.answer-text, .answer-links').hide()
 		a.find('.answer-edit-form-container').show()
 		a.find('textarea').val(a.find('.md-plain').text())
+		updateMarkdownPreview(a)
 	hideAnswerEditForm = (target) ->
 		a = target.closest('.answer')
 		a.find('.answer-text, .answer-links').show()
@@ -71,22 +72,21 @@ ready = ->
 
 	renderMarkdown = (container) ->
 		text = container.find('.md-plain').text()
-		formatted = marked(text, {
-			sanitize: true
-			})
+		formatted = marked(text, sanitize: true)
 		container.find('.md-formatted').html(formatted)
-	$('.md-container').each( (i, elem) -> renderMarkdown($(elem)) )
+	$('.md-container').each (i, elem) ->
+		renderMarkdown($(elem))
 
-	updateMarkdownPreview = ->
-		text = $('.edit textarea').val()
-		if text
-			markuped = marked(text, {
-				sanitize: true
-				})
-			$('.preview-text').html(markuped)
-	$('.edit textarea').keyup (e) ->
-		updateMarkdownPreview()
-	updateMarkdownPreview()
+	updateMarkdownPreview = (container) ->
+		text = container.find('.edit textarea').val()
+		if text?
+			formatted = marked(text, sanitize: true)
+			container.find('.preview-text').html(formatted)
+	$('.edit textarea').on 'input', (e) ->
+		container = $(e.currentTarget).closest('.edit-container')
+		updateMarkdownPreview(container)
+	$('.edit-container').each (i, elem) ->
+		updateMarkdownPreview($(elem))
 
 	tabHandler = (e) ->
 		keyCode = e.keyCode || e.which
@@ -105,6 +105,6 @@ ready = ->
 	 	    # put caret at right position again
 		    $(this).get(0).selectionStart =
 			    $(this).get(0).selectionEnd = start + 1
-	$(document).on('keydown', '.edit textarea', tabHandler )
+	$(document).on('keydown', '.edit textarea', tabHandler)
 $(document).ready(ready)
 $(document).on('page:load', ready)

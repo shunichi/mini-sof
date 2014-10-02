@@ -1,7 +1,11 @@
 = form_for(answer, url: question_answer_path(answer.question, answer), remote: true) do |f|
   = f.hidden_field :user_id
   = f.hidden_field :question_id
-  .field
-    = f.text_area :body
+  .edit-container
+    .preview
+      プレビュー
+      .preview-text
+    .field.edit
+      = f.text_area :body
   .actions
     = f.submit '保存'
