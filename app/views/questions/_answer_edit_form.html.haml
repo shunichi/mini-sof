@@ -8,4 +8,6 @@
     .field.edit
       = f.text_area :body
   .actions
-    = f.submit '保存'
+    .btn-group.btn-group-sm
+      = f.submit '保存', class: 'btn btn-default'
+      %button.answer-edit-cancel-link.btn.btn-default キャンセル

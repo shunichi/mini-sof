@@ -38,9 +38,9 @@
             .answer-edit-form-container
               .answer-edit-form
                 = render partial: 'questions/answer_edit_form', locals: { answer: answer }
-              = link_to 'キャンセル', '#', class: 'answer-edit-cancel-link'
             .answer-links
               = link_to '編集', '#', class: 'answer-edit-link'
+              \|
               = link_to '削除', question_answer_path(@question, answer),
                 method: :delete,
                 data: { confirm: '削除してもよろしいですか？' },
@@ -70,4 +70,4 @@
           %br
           = f.text_area :body
       .actions
-        = f.submit '回答する'
+        = f.submit '回答する', class: 'btn btn-default'
