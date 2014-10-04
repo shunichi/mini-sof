@@ -86,24 +86,36 @@
 
 // question edit form
 
-.edit-container {
-	overflow: auto;
-}
-.preview {
-	float: right;
-	width: 50%;
-	padding: 0px 0px 0px 16px;
-}
-.preview-text {
-}
-.edit {
-	overflow: hidden;
-}
-.edit textarea {
+.md-edit-container {
+	margin: 8px 0px;
+	display: table;
+	border: solid #aaaaaa 1px;
 	width: 100%;
-	max-width: 100%;
-	min-height: 200px;
-	height: 100%;
+}
+.md-edit-column, .md-preview-column {
+	display: table-cell;
+	width: 50%;
+}
+.md-edit-column {
+	border-right: solid #aaaaaa 1px;
+}
+.md-edit-header, .md-preview-header {
+	background-color: #eeeeee;
+	padding-left: 8px;
+}
+.md-header-text {
+	line-height: 30px;
+}
+textarea.md-edit {
+	padding: 8px;
+	width: 100%;
+	height: 400px;
+	border: 0;
+}
+.md-preview {
+	padding: 8px;
+	height:400px;
+	overflow: auto;
 }
 
 // questions#show
@@ -128,6 +140,10 @@
 
 .answer {
 	border-top: solid #e0e0e0 1px;
+}
+
+.answer-container {
+	width: 100%;
 }
 
 .answer-text {

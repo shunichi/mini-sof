@@ -78,14 +78,14 @@ ready = ->
         renderMarkdown($(elem))
 
     updateMarkdownPreview = (container) ->
-        text = container.find('.edit textarea').val()
+        text = container.find('textarea.md-edit').val()
         if text?
             formatted = marked(text, sanitize: true)
-            container.find('.preview-text').html(formatted)
-    $('.edit textarea').on 'input', (e) ->
-        container = $(e.currentTarget).closest('.edit-container')
+            container.find('.md-preview').html(formatted)
+    $('textarea.md-edit').on 'input', (e) ->
+        container = $(e.currentTarget).closest('.md-edit-container')
         updateMarkdownPreview(container)
-    $('.edit-container').each (i, elem) ->
+    $('.md-edit-container').each (i, elem) ->
         updateMarkdownPreview($(elem))
 
     tabHandler = (e) ->

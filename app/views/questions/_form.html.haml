@@ -11,13 +11,14 @@
     = f.label :title, 'タイトル'
     %br
     = f.text_field :title
-  .edit-container
-    .preview
-      プレビュー
-      .preview-text
-    .field.edit
-      = f.label :body, '本文'
-      %br
-      = f.text_area :body
+  .md-edit-container
+    .md-edit-column
+      .md-edit-header
+        = f.label :body, '本文', class: 'md-header-text'
+      = f.text_area :body, class: 'md-edit'
+    .md-preview-column
+      .md-preview-header
+        = f.label 'プレビュー', class: 'md-header-text'
+      .md-preview
   .actions
     = f.submit '保存'

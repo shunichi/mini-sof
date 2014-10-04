@@ -1,12 +1,15 @@
 = form_for(answer, url: question_answer_path(answer.question, answer), remote: true) do |f|
   = f.hidden_field :user_id
   = f.hidden_field :question_id
-  .edit-container
-    .preview
-      プレビュー
-      .preview-text
-    .field.edit
-      = f.text_area :body
+  .md-edit-container
+    .md-edit-column
+      .md-edit-header
+        回答
+      = f.text_area :body, class: 'md-edit'
+    .md-preview-column
+      .md-preview-header
+        プレビュー
+      .md-preview
   .actions
     .btn-group.btn-group-sm
       = f.submit '保存', class: 'btn btn-default'
