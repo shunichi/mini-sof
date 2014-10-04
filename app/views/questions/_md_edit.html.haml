@@ -1,0 +1,9 @@
+.md-edit-container
+  .md-edit-column
+    .md-edit-header
+      = f.label :body, label_text, class: 'md-header-text'
+    = f.text_area :body, class: 'md-edit'
+  .md-preview-column
+    .md-preview-header
+      = f.label 'プレビュー', class: 'md-header-text'
+    .md-preview

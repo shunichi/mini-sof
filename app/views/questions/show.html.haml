@@ -61,14 +61,6 @@
               %li= msg
       = f.hidden_field :user_id
       = f.hidden_field :question_id
-      .md-edit-container
-        .md-edit-column
-          .md-edit-header
-            = f.label :body, 'あなたの回答', class: 'md-header-text'
-          = f.text_area :body, class: 'md-edit'
-        .md-preview-column
-          .md-preview-header
-            =f.label 'プレビュー', class: 'md-header-text'
-          .md-preview
+      = render partial: 'questions/md_edit', locals: { label_text: 'あなたの回答', f: f }
       .actions
         = f.submit '回答する', class: 'btn btn-default'
