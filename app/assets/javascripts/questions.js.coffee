@@ -16,20 +16,19 @@ ready = ->
     $(".answer-edit-cancel-link").click (e) ->
         e.preventDefault()
         hideAnswerEditForm($(e.currentTarget))
-    $('.edit_answer').on('ajax:complete',
+    $('.edit_answer').on 'ajax:complete',
         (e, data, status, xhr) ->
             container = $(e.currentTarget).closest('.md-container')
             container.find('.md-plain').text(data.responseJSON.answer.body)
             renderMarkdown(container)
             hideAnswerEditForm(container)
-    )
 
-    updateAnswerCheck = (accepted_answer_id) ->
+    updateAnswerCheck = (acceptedAnswerId) ->
         $('.accepted')
             .removeClass('accepted-on')
             .addClass('accepted-off')
-        if accepted_answer_id
-            $('#answer_' + accepted_answer_id + ' .accepted')
+        if acceptedAnswerId?
+            $('#answer_' + acceptedAnswerId + ' .accepted')
                 .removeClass('accepted-off')
                 .addClass('accepted-on')
     $('.accept-link').click (e) ->
@@ -43,27 +42,6 @@ ready = ->
             url: url
             success: (data) ->
                 updateAnswerCheck(data.answer.id)
-                return false
-            error: (data) ->
-                alert('エラーが発生しました')
-                return false
-            )
-
-    highlightVoteArrow = (parent,value) ->
-        parent.find('.vote-arrow.upvote, .vote-arrow.downvote').removeClass('voted')
-        if value > 0
-            parent.find('.vote-arrow.upvote').addClass('voted')
-        else if value < 0
-            parent.find('.vote-arrow.downvote').addClass('voted')
-    $('.vote-arrow.upvote, .vote-arrow.downvote').click (e) ->
-        target = $(e.currentTarget)
-        parent = target.parent()
-        $.ajax(
-            type: "POST"
-            url: target.data('url')
-            success: (data) ->
-                parent.find('.votes-score').text( data.votes_score )
-                highlightVoteArrow(parent, data.vote_value)
                 return false
             error: (data) ->
                 alert('エラーが発生しました')
