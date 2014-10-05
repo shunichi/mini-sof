@@ -84,8 +84,24 @@
 	}
 }
 
+.md-formatted, .md-edit-preview {
+	table {
+		border: solid #ccc 1px;
+	}
+	td, th {
+		border: solid #ccc 1px;
+		padding: 8px;
+	}
+	tbody tr:nth-child(odd) {
+		background-color: #eee;
+	}
+}
 
 // questions#show
+
+.md-plain {
+	display: none;
+}
 
 .question-text {
 	margin-bottom: 10px;
@@ -103,6 +119,10 @@
 
 .answer {
 	border-top: solid #e0e0e0 1px;
+}
+
+.answer-container {
+	width: 100%;
 }
 
 .answer-text {
@@ -125,6 +145,7 @@
 
 .votecell {
 	width: 60px;
+	vertical-align: top;
 }
 
 .accepted {

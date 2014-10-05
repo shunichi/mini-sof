@@ -1,7 +1,8 @@
 = form_for(answer, url: question_answer_path(answer.question, answer), remote: true) do |f|
   = f.hidden_field :user_id
   = f.hidden_field :question_id
-  .field
-    = f.text_area :body
+  = render partial: 'questions/md_edit', locals: { label_text: '回答', f: f }
   .actions
-    = f.submit '保存'
+    .btn-group.btn-group-sm
+      = f.submit '保存', class: 'btn btn-default'
+      %button.answer-edit-cancel-link.btn.btn-default キャンセル
