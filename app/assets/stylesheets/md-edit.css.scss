@@ -1,0 +1,44 @@
+$border-color: #aaaaaa;
+$header-color: #eeeeee;
+$content-height: 400px;
+
+.md-edit-container {
+	margin: 8px 0px;
+	display: table;
+	border: solid $border-color 1px;
+	width: 100%;
+}
+.md-edit-header-row, .md-edit-content-row {
+	display: table-row;
+}
+.md-edit-textarea-header, .md-edit-preview-header {
+	display: table-cell;
+	background-color: $header-color;
+	padding-left: 8px;
+	width: 50%;
+}
+.md-edit-header-text {
+	line-height: 30px;
+	margin: 0;
+}
+.md-edit-textarea-header, .md-edit-preview-header {
+	border-bottom: solid $border-color 1px;
+}
+.md-edit-textarea-header, .md-edit-textarea-cell {
+	border-right: solid $border-color 1px;
+}
+.md-edit-textarea-cell, .md-edit-preview-cell {
+	display: table-cell;
+	vertical-align: top;
+}
+.md-edit-textarea {
+	padding: 8px;
+	width: 100%;
+	height: $content-height;
+	border: 0;
+}
+.md-edit-preview {
+	padding: 8px;
+	height: $content-height;
+	overflow: auto;
+}

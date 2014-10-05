@@ -77,16 +77,6 @@ ready = ->
     $('.md-container').each (i, elem) ->
         renderMarkdown($(elem))
 
-    updateMarkdownPreview = (container) ->
-        text = container.find('.md-edit-textarea').val()
-        if text?
-            formatted = marked(text, sanitize: true)
-            container.find('.md-edit-preview').html(formatted)
-    $('.md-edit-textarea').on 'input', (e) ->
-        container = $(e.currentTarget).closest('.md-edit-container')
-        updateMarkdownPreview(container)
-    $('.md-edit-container').each (i, elem) ->
-        updateMarkdownPreview($(elem))
 
     tabHandler = (e) ->
         keyCode = e.keyCode || e.which
