@@ -13,4 +13,7 @@
     = f.text_field :title
   = render partial: 'questions/md_edit', locals: { label_text: '質問文', f: f }
   .actions
-    = f.submit '保存'
+    .btn-group.btn-group-sm
+      = f.submit '保存', class: 'btn btn-default'
+      - if @question.persisted?
+        = link_to 'キャンセル', @question, class: 'btn btn-default'
