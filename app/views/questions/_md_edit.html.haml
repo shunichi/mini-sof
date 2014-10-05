@@ -1,9 +1,12 @@
 .md-edit-container
-  .md-edit-column
-    .md-edit-header
-      = f.label :body, label_text, class: 'md-header-text'
-    = f.text_area :body, class: 'md-edit'
-  .md-preview-column
-    .md-preview-header
-      = f.label 'プレビュー', class: 'md-header-text'
-    .md-preview
+  .md-edit-header-row
+    .md-edit-textarea-header
+      = f.label :body, label_text, class: 'md-edit-header-text'
+    .md-edit-preview-header
+      = f.label 'プレビュー', class: 'md-edit-header-text'
+
+  .md-edit-content-row
+    .md-edit-textarea-cell
+      = f.text_area :body, class: 'md-edit-textarea'
+    .md-edit-preview-cell
+      .md-edit-preview
