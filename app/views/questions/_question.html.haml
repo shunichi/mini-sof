@@ -1,0 +1,15 @@
+%table
+  %tbody
+    %tr
+      %td.votecell
+        = render partial: 'shared/vote_arrows', locals: { votable: question, upvote_path: upvote_question_path(question), downvote_path: downvote_question_path(question) }
+      %td.md-container
+        .md-plain>= preserve(html_escape(question.body))
+        .question-text.md-formatted
+        .question-footer
+          - if question.user == current_user
+            = link_to '編集', edit_question_path(question)
+            \|
+            = link_to '削除', question, method: :delete, data: { confirm: '質問を削除してもよろしいですか？' }
+
+

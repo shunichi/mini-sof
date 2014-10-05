@@ -1,0 +1,13 @@
+.new-answer-form
+  = form_for(answer, url: question_answers_path(question)) do |f|
+    - if answer.errors.any?
+      #error_explanation
+        %h2= "入力にエラーがあるため回答できませんでした"
+        %ul
+          - answer.errors.full_messages.each do |msg|
+            %li= msg
+    = f.hidden_field :user_id
+    = f.hidden_field :question_id
+    = render partial: 'shared/md_edit', locals: { label_text: 'あなたの回答', f: f }
+    .actions
+      = f.submit '回答する', class: 'btn btn-default'

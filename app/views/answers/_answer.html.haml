@@ -1,0 +1,27 @@
+%table.answer-container
+  %tbody
+    %tr
+      %td.votecell
+        = render partial: 'shared/vote_arrows', locals: { votable: answer, upvote_path: upvote_question_answer_path(question, answer), downvote_path: downvote_question_answer_path(question, answer) }
+        .accepted{class: accepted_answer_class(question, answer),
+          data: { accept_url: accept_question_answer_path(question, answer),
+           unaccept_url: unaccept_question_answer_path(question, answer) }}
+          = icon('check', '', class: 'fa-2x')
+      %td.md-container
+        .md-plain>= preserve(html_escape(answer.body))
+        .answer-text.md-formatted
+        - if answer.user == current_user
+          .answer-edit-form-container
+            = render partial: 'answers/edit_form', locals: { answer: answer }
+          .answer-links
+            = link_to '編集', '#', class: 'answer-edit-link'
+            \|
+            = link_to '削除', question_answer_path(question, answer),
+              method: :delete,
+              data: { confirm: '削除してもよろしいですか？' },
+              class: 'answer-delete-link'
+        .answer-footer
+          回答: #{answer.created_at}
+          更新: #{answer.updated_at}
+          %br
+          = answer.user.email
