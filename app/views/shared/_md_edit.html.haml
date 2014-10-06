@@ -7,6 +7,7 @@
 
   .md-edit-content-row
     .md-edit-textarea-cell
-      = f.text_area :body, class: 'md-edit-textarea'
+      - placeholder = '' if local_assigns[:placeholder].nil?
+      = f.text_area :body, class: 'md-edit-textarea', placeholder: placeholder
     .md-edit-preview-cell
       .md-edit-preview

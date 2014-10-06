@@ -8,6 +8,6 @@
             %li= msg
     = f.hidden_field :user_id
     = f.hidden_field :question_id
-    = render partial: 'shared/md_edit', locals: { label_text: 'あなたの回答', f: f }
+    = render partial: 'shared/md_edit', locals: { label_text: 'あなたの回答', placeholder: 'ここに回答を入力してください', f: f }
     .actions
       = f.submit '回答する', class: 'btn btn-default'
