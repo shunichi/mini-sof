@@ -16,6 +16,8 @@ class QuestionsController < ApplicationController
     else
       @questions = Question.order(updated_at: :desc).page(params[:page])
     end
+    @questions_answer_counts = Answer.where(question_id: @questions.pluck(:id)).group(:question_id).count
+    @questions = @questions.includes(:user)
   end
 
   def show
