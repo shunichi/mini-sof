@@ -7,10 +7,10 @@ module QuestionsHelper
     end
   end
 
-  def answer_stats_class(question)
-    if question.answers.size == 0
+  def answer_stats_class(question, questions_answer_counts)
+   if questions_answer_counts[question.id].nil?
       "unanswerd"
-    elsif !question.accepted_answer.nil?
+    elsif !question.answer_id.nil?
       "answer-accepted"
     else
       "answered"
