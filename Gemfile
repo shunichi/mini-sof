@@ -70,6 +70,7 @@ group :development do
   gem 'pry-byebug'
   gem 'hirb'
   gem 'hirb-unicode'
+  gem 'better_errors'
 
   gem 'letter_opener'
   gem 'quiet_assets'
