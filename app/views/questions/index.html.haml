@@ -12,8 +12,8 @@
           .vote-stats
             %span.vote-count>= question.cached_votes_score
             %span.vote-unit 票
-          .answer-stats{class: answer_stats_class(question, @questions_answer_counts) }
-            %span.answer-count>= @questions_answer_counts[question.id] || 0
+          .answer-stats{class: answer_stats_class(question) }
+            %span.answer-count>= question.answers_count
             %span.answer-unit 答
       .summary
         %h3= link_to question.title, question

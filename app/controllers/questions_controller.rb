@@ -7,7 +7,6 @@ class QuestionsController < ApplicationController
   def index
     @sort_type = params[:sort] || 'active'
     @questions = Question.sorted(@sort_type).page(params[:page]).includes(:user)
-    @questions_answer_counts = Answer.where(question_id: @questions.pluck(:id)).group(:question_id).count
   end
 
   def show
