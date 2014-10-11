@@ -1,5 +1,4 @@
 class Question < ActiveRecord::Base
-  acts_as_votable
   include VotableMethods
 
   belongs_to :user
