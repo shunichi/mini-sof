@@ -10,19 +10,14 @@ class Question < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 250 }
   validates :body, presence: true
 
-  def self.sorted(sort_type, page_no)
-    sort_type ||= 'active'
+  scope :sorted, -> (sort_type) {
     case sort_type
-    when 'active'
-      questions = Question.order(updated_at: :desc).page(page_no)
     when 'newest'
-      questions = Question.order(created_at: :desc).page(page_no)
+      order(created_at: :desc)
     when 'votes'
-      questions = Question.order(cached_votes_score: :desc).page(page_no)
+      order(cached_votes_score: :desc)
     else
-      sort_type = 'active'
-      questions = Question.order(updated_at: :desc).page(page_no)
+      order(updated_at: :desc)
     end
-    [sort_type, questions]
-  end
+  }
 end
