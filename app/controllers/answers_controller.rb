@@ -6,18 +6,11 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @answer.question, notice: 'Answer was successfully created.' }
-        format.json { render :show, status: :created, location: @answer.question }
-      else
-        format.html do
-          @question = @answer.question
-          render template: 'questions/show'
-        end
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
+    if @answer.save
+      redirect_to @answer.question, notice: 'Answer was successfully created.'
+    else
+      @question = @answer.question
+      render template: 'questions/show'
     end
   end
 
@@ -28,10 +21,7 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    respond_to do |format|
-      format.html { redirect_to @answer.question, notice: 'Answer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @answer.question, notice: 'Answer was successfully destroyed.'
   end
 
   def accept
