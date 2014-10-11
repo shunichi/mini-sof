@@ -5,13 +5,12 @@ class QuestionsController < ApplicationController
   before_action :set_answer, only: [:show]
 
   def index
-    @sort_type, @questions = Question.sorted(params[:sort], params[:page])
+    @sort_type = params[:sort] || 'active'
+    @questions = Question.sorted(@sort_type).page(params[:page]).includes(:user)
     @questions_answer_counts = Answer.where(question_id: @questions.pluck(:id)).group(:question_id).count
-    @questions = @questions.includes(:user)
   end
 
   def show
-
   end
 
   def new
