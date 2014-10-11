@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923143327) do
+ActiveRecord::Schema.define(version: 20141011150746) do
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -29,8 +29,10 @@ ActiveRecord::Schema.define(version: 20140923143327) do
     t.datetime "updated_at"
     t.integer  "answer_id"
     t.integer  "cached_votes_score", default: 0
+    t.integer  "answers_count",      default: 0
   end
 
+  add_index "questions", ["answers_count"], name: "index_questions_on_answers_count", using: :btree
   add_index "questions", ["cached_votes_score"], name: "index_questions_on_cached_votes_score", using: :btree
 
   create_table "users", force: true do |t|
