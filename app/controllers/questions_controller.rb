@@ -2,7 +2,6 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :upvote, :downvote]
   before_action :set_current_users_question, only: [:edit, :update, :destroy]
   before_action :set_question, only: [:show, :upvote, :downvote]
-  before_action :set_answer, only: [:show]
 
   def index
     @sort_type = params[:sort] || 'active'
@@ -10,6 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+      @answer = @question.answers.build(user: current_user)
   end
 
   def new
@@ -59,10 +59,6 @@ class QuestionsController < ApplicationController
 
     def set_current_users_question
       @question = current_user.questions.find(params[:id])
-    end
-
-    def set_answer
-      @answer = @question.answers.build(user: current_user)
     end
 
     def question_params
