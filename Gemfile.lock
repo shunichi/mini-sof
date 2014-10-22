@@ -27,6 +27,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.4.2)
+      activerecord (>= 3.2, < 5)
     acts_as_votable (0.10.0)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
@@ -227,6 +229,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 3.4)
   acts_as_votable (~> 0.10.0)
   better_errors
   bootstrap-sass (~> 3.2.0)
