@@ -46,6 +46,7 @@ gem 'kaminari'
 gem 'haml-rails'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'jquery-ui-rails', '~> 5.0.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.99.0'
