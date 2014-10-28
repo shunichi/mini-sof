@@ -6,9 +6,7 @@
       %td.md-container
         .md-plain>= preserve(html_escape(question.body))
         .question-text.md-formatted
-        .question-tag-list
-          - question.tag_list.each do |tag|
-            %span.tag-name= tag
+        = render partial: 'shared/tag_list', locals: { question: question }
         .question-footer
           - if question.user == current_user
             = link_to '編集', edit_question_path(question)

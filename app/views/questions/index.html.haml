@@ -17,6 +17,7 @@
       .summary
         %h3= link_to question.title, question
         .excerpt= truncate(question.body, length: 100)
+        = render partial: 'shared/tag_list', locals: { question: question }
         .user-info= question.user.email
         .footer
           回答: #{question.created_at}
