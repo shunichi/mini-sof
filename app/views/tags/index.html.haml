@@ -1,0 +1,5 @@
+= render partial: 'shared/second_nav_bar', locals: { page_name: 'tags' }
+- @tags.each do |tag|
+  .tag
+    .tag-name= link_to tag.name, tagged_questions_path(tag.name)
+
