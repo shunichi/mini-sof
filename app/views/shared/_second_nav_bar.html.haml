@@ -1,0 +1,6 @@
+#second-nav-bar
+  %h1.brand=link_to 'Mini Stackoverflow', root_path
+  %ul.nav.nav-pills#second-nav
+    %li{class: pill_class('questions', page_name)}= link_to '質問一覧', questions_path
+    %li{class: pill_class('tags', page_name)}= link_to 'タグ一覧', tags_path
+    %li{class: pill_class('ask', page_name)}= link_to '質問する', new_question_path

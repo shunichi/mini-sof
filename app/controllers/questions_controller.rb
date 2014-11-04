@@ -8,6 +8,12 @@ class QuestionsController < ApplicationController
     @questions = Question.sorted(@sort_type).page(params[:page]).includes(:user)
   end
 
+  def tagged
+    @sort_type = params[:sort] || 'active'
+    @questions = Question.tagged_with(params[:tag]).sorted(@sort_type).page(params[:page])
+    render :index
+  end
+
   def show
       @answer = @question.answers.build(user: current_user)
   end
@@ -62,6 +68,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:title, :body)
+      params.require(:question).permit(:title, :body, :tag_list)
     end
 end

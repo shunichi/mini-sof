@@ -11,6 +11,10 @@
     = f.label :title, 'タイトル'
     %br
     = f.text_field :title
+  .field
+    = f.label :tag_list, 'タグ'
+    %br
+    = f.text_field :tag_list
   = render partial: 'shared/md_edit', locals: { label_text: '質問文', f: f }
   .actions
     .btn-group.btn-group-sm

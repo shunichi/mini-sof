@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
   include VotableMethods
+  acts_as_taggable
 
   belongs_to :user
   has_many :answers, dependent: :destroy

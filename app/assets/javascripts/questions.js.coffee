@@ -55,6 +55,7 @@ ready = ->
     $('.md-container').each (i, elem) ->
         renderMarkdown($(elem))
 
+    $('#question_tag_list').tagit()
 
     tabHandler = (e) ->
         keyCode = e.keyCode || e.which

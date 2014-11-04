@@ -10,6 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require jquery-ui
+ *= require jquery.tagit
  *= require_tree .
  *= require_self
  */
@@ -19,7 +21,32 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+h1.brand {
+	display: inline-block;
+	margin: 0px 12px 0px 0px;
+	padding: 8px;
+	color: #fff;
+	background-color: #1C5A96;
+
+	a {
+		&:active, &:hover, &:visited {
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+}
+
+#second-nav-bar {
+	margin-bottom: 8px;
+}
+
+#second-nav {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
 #content {
 	width: 980px;
 	margin: 0 auto;
+	// border: 1px solid red;
 }

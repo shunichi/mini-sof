@@ -21,7 +21,7 @@ feature '質問ページ' do
       page_count.times.each do |p0|
         displayed_page_no = p0 + 1
 
-        visit paged_questions_path(page: displayed_page_no)
+        visit questions_path(page: displayed_page_no)
 
         page_count.times.each do |p1|
           page_no = p1 + 1
